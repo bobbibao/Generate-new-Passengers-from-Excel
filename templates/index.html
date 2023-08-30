@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Passengers In Excel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='./css/index.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='./img/icon.png') }}" />
+  
+</head>
+<body>
+  <form class="wrapper" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <header>Generate Passengers</header>
+    <div class="title">
+      <input type="text" list="airline" name="airline" placeholder="Hãng..." required>
+      <datalist id="airline">
+        <option value="VN 781">
+        <option value="VN 773">
+        <option value="VN 655">
+        <option value="VN 605">
+      </datalist>
+      <label for="date">Ngày khởi hành:</label>
+      <input type="date" id="date" name="date" required>
+      <input type="text" list="from" name="from" placeholder="Nơi đi..." required>
+      <datalist id="from">
+        <option value="TPHCM(SGN)">
+        <option value="SYDNEY(SYD)">
+      </datalist>
+      <input type="text" list="to" name="to" placeholder="Nơi đến..." required>
+      <datalist id="to">
+        <option value="TPHCM(SGN)">
+        <option value="SYDNEY(SYD)">
+      </datalist>
+      <input type="number" name="time" placeholder="Thời gian bay (hour)..." step="0.05" min="0.05" required>
+      <label for="start">Giờ cất cánh:</label>
+      <input type="time" id="start" name="start" required>
+      <label for="end">Giờ hạ cánh:</label>
+      <input type="time" id="end" name="end" required>
+
+      <div class="custom">
+        <div class="input-container">
+          <input type="number" id="title" name="size" placeholder="Font size..." min="10">
+        </div>
+        <div>
+          <label for="fill-color">Fill Color:</label>
+          <input id="fill-color" type="color" name="fill-color" value="#6495ED">
+        </div>
+        <div>
+          <label for="font-color">Font Color:</label>
+          <input id="font-color" type="color" name="font-color" value="#1f8283">
+        </div>
+      </div>
+    </div>
+
+    <input type="number" id="data" name="quantity" placeholder="Số lượng..." min="1" required>
+    <input type="text" list="font-families" id="font-family" name="font-family" placeholder="Font...">
+    <datalist id="font-families">
+      <option value="Times New Roman">
+      <option value="Arial">
+      <option value="Verdana">
+    </datalist>
+    <div class="form">
+      <input class="file-input" type="file" name="file"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" hidden
+        required>
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p>Browse File to Upload</p>
+    </div>
+    <section class="uploaded-area"></section>
+    <button type="submit" value="Upload"> Generate </button>
+  </form>
+
+  <script src="{{ url_for('static', filename='./js/index.js') }}"></script>
+</body>
+</html>
